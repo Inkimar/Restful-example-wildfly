@@ -66,15 +66,8 @@ public class StudentResource {
         Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
         List<InputPart> inputParts = uploadForm.get("uploadedFile");
 
-        List<InputPart> legend = uploadForm.get("legend");
-
         if (null == inputParts) {
-            return Response.status(400)
-                    .entity("not valid \n").build();
-        }
-        
-        for (InputPart inputPart : legend) {
-            
+            return Response.status(400).entity("not valid \n").build();
         }
 
         for (InputPart inputPart : inputParts) {
