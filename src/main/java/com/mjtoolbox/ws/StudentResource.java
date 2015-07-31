@@ -20,8 +20,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import org.apache.commons.io.IOUtils;
+import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
+import se.nrm.bio.Form;
 
 /**
  * http://www.mkyong.com/webservices/jax-rs/file-upload-example-in-resteasy/
@@ -50,6 +52,22 @@ public class StudentResource {
         students.add(new Student(12348, "Daniel", 25));
         students.add(new Student(12349, "John", 26));
         students.add(new Student(12350, "Debbie", 28));
+        students.add(new Student(12350, "anders", 61));
+    }
+    
+    /**
+     *  curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"testUUID":"w"}'  http://localhot:8080/RestWebServiceTest/rs/json/ingimar
+     * 
+     * @param form
+     * @return 
+     */
+    @POST
+    @Path("ingimar")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response testAdd(@MultipartForm Form form) {
+        String uuid = form.getTestUUID();
+        
+        return Response.status(200).entity(uuid).build();
     }
 
     /**
